@@ -1,0 +1,29 @@
+load("@gazelle//:def.bzl", "gazelle")
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "nogo")
+
+# gazelle:prefix github.com/theknology/frontend
+
+gazelle(name = "gazelle")
+
+nogo(
+    name = "my_nogo",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":lib",
+    ],
+)
+
+go_library(
+    name = "lib",
+    srcs = ["hello.go"],
+    importpath = "github.com/theknology/",
+    visibility = ["//visibility:public"],
+    deps = [],
+)
+
+go_library(
+    name = "frontend",
+    srcs = ["hello.go"],
+    importpath = "github.com/theknology/frontend",
+    visibility = ["//visibility:public"],
+)
